@@ -2,15 +2,15 @@ from datetime import timedelta
 from turtle import forward, left, pencolor, exitonclick
 from math import pi
 
-name = "Alphabet"
+testname = "Alphabet"
 
 
 def exe1():
-    print(name)
+    print(testname)
 
 
 def exe2():
-    print("La valeur est", name, "et il a", len(name), "caractères")
+    print("La valeur est", testname, "et il a", len(testname), "caractères")
 
 
 def exe3():
@@ -263,23 +263,38 @@ def exe25():
 
 
 def exe26():
-    d = Domino(1, 6)
-    d.display_points()
-    print(d.value())
+    # d = Domino(1, 6)
+    # d.display_points()
+    # print(d.value())
+    #
+    # d = Domino(0, 2)
+    # try:
+    #     d.display_points()
+    #     print(d.value())
+    # except AttributeError:
+    #     pass
+    #
+    # d = Domino('titi', 'toto')
+    # try:
+    #     d.display_points()
+    #     print(d.value())
+    # except AttributeError:
+    #     pass
 
-    d = Domino(0, 2)
-    try:
-        d.display_points()
-        print(d.value())
-    except AttributeError:
-        pass
+    d1 = Domino(4, 3)
+    d2 = Domino(6, 1)
+    d1.display_points()
+    d2.display_points()
+    print("Total points :", d1.value() + d2.value())
 
-    d = Domino('titi', 'toto')
-    try:
-        d.display_points()
-        print(d.value())
-    except AttributeError:
-        pass
+    domino_list = []
+    for i in range(7):
+        domino_list.append(Domino(6, i))
+    vt = 0
+    for domino in domino_list:
+        domino.display_points()
+    vt = vt + domino.value()
+    print('Total value : ', vt)
 
 
 class Domino:
@@ -288,9 +303,9 @@ class Domino:
         try:
             int(a)
             int(b)
-            if a > 6 or a < 1:
+            if a > 6 or a < 0:
                 raise ValueError
-            if b > 6 or b < 1:
+            if b > 6 or b < 0:
                 raise ValueError
         except ValueError:
             print("Exception at Domino init:  must be integers between 1 and 6")
@@ -308,8 +323,64 @@ class Domino:
         return self.A + self.B
 
 
+class CompteBancaire:
+    def __init__(self, name, amount):
+        self.name = str(name)
+        self.amount = int(amount)
+
+    def add(self, amount):
+        # ajoute une somme au compte
+        self.amount += amount
+
+    def withdraw(self, amount):
+        # retire une somme du compte
+        if self.amount >= amount:
+            self.amount -= amount
+
+    def display(self):
+        # affiche le solde du compte
+        s = "s" * (self.amount > 0)
+        print(f"Le compte {self.name} contient {self.amount} euro{s}")
+
+
 def exe27():
-    pass
+    compte = CompteBancaire('Nicolas', 1000)
+    compte.add(500)
+    compte.display()
+    compte.withdraw(100)
+    compte.display()
+    compte = CompteBancaire('Nicolas', 0)
+    compte.display()
+
+
+class Cercle:
+    def __init__(self, radius):
+        self.radius = int(radius)
+
+    def area(self):
+        print("Cercle area")
+        return pi*self.radius**2
+
+
+class Cylindre(Cercle):
+    def __init__(self, radius, height):
+        self.height = int(height)
+        super().__init__(radius)
+
+    def volume(self):
+        print("Cylindre volume")
+        return self.area() * self.height
+
+
+class Cone(Cylindre):
+    def volume(self):
+        print("Cone volume")
+        return 1/3 * super().volume()
+
+
+def exe28():
+    cone = Cone(1, 5)
+    print(cone.volume())
 
 
 def main():
@@ -336,7 +407,9 @@ def main():
     #
     # exe24()
     # exe25()
-
+    # exe26()
+    # exe27()
+    exe28()
     pass
 
 
