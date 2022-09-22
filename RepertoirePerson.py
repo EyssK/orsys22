@@ -162,3 +162,7 @@ class RepertoirePerson:
         """
         self.save()
         exit()
+
+if __name__ == "__main__":
+    a = RepertoirePerson()
+    a.start()

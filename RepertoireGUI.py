@@ -93,3 +93,7 @@ class RepertoireGUI:
 
     def start(self):
         self.window.mainloop()
+
+if __name__ == "__main__":
+    r = RepertoireGUI()
+    r.start()
