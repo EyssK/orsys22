@@ -31,8 +31,8 @@ class RepertoirePerson:
         return a Person from input
         :return: a person
         """
-        nom = str(input("Nom : "))
-        prenom = str(input("Prénom : "))
+        nom = input("Nom : ")
+        prenom = input("Prénom : ")
         p = Person(prenom, nom)
         return p
 
@@ -42,7 +42,7 @@ class RepertoirePerson:
         return a regexp from input
         :return: a regexp
         """
-        nom = str(input("Regexp : "))
+        nom = input("Regexp : ")
         return nom
 
     def ajouter(self, personne):
@@ -68,8 +68,7 @@ class RepertoirePerson:
         """
         found = []
         for person in self.liste_nom:
-            if re.findall(regexp, person.last_name, re.IGNORECASE) \
-                    or re.findall(regexp, person.first_name, re.IGNORECASE):
+            if re.search(regexp, person.full_name(), re.IGNORECASE):
                 found.append(person)
         return found
 
@@ -131,7 +130,7 @@ class RepertoirePerson:
         try:
             self.liste_nom.remove(person)
         except ValueError:
-            print(f"{person} est inconnue")
+            print(f"{person.full_name()} est inconnue")
 
     def cmd_chercher(self, *args):
         """
