@@ -67,9 +67,9 @@ class RepertoirePerson:
         :return: liste des personnes correspondantes
         """
         found = []
-        for person in [person for person in self.liste_nom]:
-            if re.findall(regexp, person.last_name, re.IGNORECASE) or re.findall(regexp, person.first_name,
-                                                                                 re.IGNORECASE):
+        for person in self.liste_nom:
+            if re.findall(regexp, person.last_name, re.IGNORECASE) \
+                    or re.findall(regexp, person.first_name, re.IGNORECASE):
                 found.append(person)
         return found
 
@@ -78,7 +78,12 @@ class RepertoirePerson:
         with open(self.PATH, 'wb') as f:
             pickle.dump(self.liste_nom, f)
             # for person in self.liste_nom:
-            #     f.write(f"{person.first_name}; {person.last_name}; {person.get_age()}; {person.email}; {person.phone}\n")
+            #     f.write(
+            #         f"{person.first_name}; "
+            #         f"{person.last_name}; "
+            #         f"{person.get_age()}; "
+            #         f"{person.email}; "
+            #         f"{person.phone}\n")
 
     def restore(self):
         try:
@@ -162,6 +167,7 @@ class RepertoirePerson:
         """
         self.save()
         exit()
+
 
 if __name__ == "__main__":
     a = RepertoirePerson()
