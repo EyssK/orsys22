@@ -16,7 +16,7 @@ class RepertoireGUI:
         self.repertoire = RepertoirePerson()
         self.window = tk.Tk()
         self.window.title("Répertoire")
-        self.window.geometry("500x100")
+        # self.window.geometry("500x100")
 
         tk.Button(self.window,
                   text="Ajouter une personne",
